@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+        let redirect_url = "https://github.com/FrknKoseoglu" // Just Change this URL
+
+        // Redirect with Javascript
+        window.location.href = redirect_url;
+
+        // Redirect with MetaTag and Title Show Url Info
+        document.querySelector("head").innerHTML = `
+        <title>Redirect... ${redirect_url}</title>
+        <meta http-equiv="refresh" content="0; url=${redirect_url}" />
+        `
+        // If redirect block 500ms after show text and redirect url
+        setTimeout(() => {
+            document.getElementById("body").innerHTML +=
+        `If you are not redirected automatically, follow this <a href='${redirect_url}'>LINK</a>.
+        <br><br>
+        Eğer yönlendirme başarılı olmadıysa bu linke tıklayabilirsiniz. <a href='${redirect_url}'>LINK</a>`;
+        }, 500);
+    </script>
+</head>
+<body id="body" style="background-color: #212121;color:#c3e871; font-weight: bold;font-size:18px;">
+</body>
+</html>
