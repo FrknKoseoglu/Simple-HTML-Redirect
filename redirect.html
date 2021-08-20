@@ -6,19 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript">
         let redirect_url = "https://github.com/FrknKoseoglu" // Just Change this URL
+        let redirect_time = 0 // Redirect Timer
+        let redirect_cd = redirect_time // Count Down Timer
+
+        const countDown = () =>{
+            document.querySelector("#countDown").innerHTML = `Redirecting to ${redirect_cd} seconds...`            
+            redirect_cd--
+        }
+        setInterval(countDown, 1000) // Run Count Down Every 1 Second
 
         // Redirect with Javascript
-        window.location.href = redirect_url;
+        setTimeout(() => {
+            window.location.href = redirect_url;
+        }, (redirect_time * 1000));
 
         // Redirect with MetaTag and Title Show Url Info
         document.querySelector("head").innerHTML = `
-        <title>Redirect... ${redirect_url}</title>
-        <meta http-equiv="refresh" content="0; url=${redirect_url}" />
+        <title>Redirect > ${redirect_url}</title>
+        <meta http-equiv="refresh" content="${redirect_time}; url=${redirect_url}" />
         `
         // If redirect block 500ms after show text and redirect url
         setTimeout(() => {
             document.getElementById("body").innerHTML +=
-        `If you are not redirected automatically, follow this <a href='${redirect_url}'>LINK</a>.
+        ` <p id="countDown">Redirecting to ${redirect_cd} seconds...</p>
+        If you are not redirected automatically, follow this <a href='${redirect_url}'>LINK</a>.
         <br><br>
         Eğer yönlendirme başarılı olmadıysa bu linke tıklayabilirsiniz. <a href='${redirect_url}'>LINK</a>`;
         }, 500);
